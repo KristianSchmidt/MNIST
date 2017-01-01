@@ -19,13 +19,14 @@ x_test /= 255.0
 y_train = traindf.as_matrix(columns=['label'])
 y_train = keras.utils.np_utils.to_categorical(y_train, 10)
 
-model = Sequential()
-model.add(Dense(32, input_dim=784))
-model.add(Activation('relu'))
-model.add(Dense(15))
-model.add(Activation('relu'))
-model.add(Dense(10))
-model.add(Activation('softmax'))
+model = Sequential(
+    [
+     Dense(32, input_dim=784, activation='relu'),
+     Dense(15, activation='relu'),
+     Dense(10, activation='softmax')
+    ]
+)
+
 model.compile(optimizer='rmsprop',
               loss='categorical_crossentropy',
               metrics=['accuracy'])
